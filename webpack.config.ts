@@ -1,7 +1,10 @@
 import * as webpack from "webpack";
+import path from "path";
 import { VueLoaderPlugin } from "vue-loader";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+
+const resolve = (dir: string) => path.resolve(__dirname, dir);
 
 const config: webpack.Configuration = {
   mode: "production",
@@ -14,6 +17,11 @@ const config: webpack.Configuration = {
   },
   resolve: {
     extensions: [".vue", ".ts", ".less", "..."],
+    alias: {
+      "@": resolve("./src"),
+      "@/assets": resolve("./src/assets"),
+      "@/style": resolve("./src/style"),
+    },
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -59,6 +67,20 @@ const config: webpack.Configuration = {
           "postcss-loader",
           "sass-loader",
         ],
+      },
+      {
+        test: /\.(png|svg|jpe?g|gif)$/,
+        type: "asset",
+        parser: {
+          // 图片小于20kb，会被解析为一个 Base64 编码的字符串注入到包中，
+          dataUrlCondition: {
+            maxSize: 20 * 1024,
+          },
+        },
+        generator: {
+          // 此选项被称为文件名，但还是可以使用像 'js/[name]/bundle.js' 这样的文件夹结构
+          filename: "image/[name]_[hash:10][ext]",
+        },
       },
     ],
   },

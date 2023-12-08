@@ -15,11 +15,9 @@ h3 {
   color: $baseColor1;
   @include baseStyle();
 }
-</style>
 
-<style scoped>
 h1 {
-  background-color: green;
+  background-color: $baseColor2;
   user-select: none;
 }
 </style>
