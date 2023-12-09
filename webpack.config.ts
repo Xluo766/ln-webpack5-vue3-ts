@@ -16,7 +16,8 @@ const config: webpack.Configuration = {
     },
   },
   resolve: {
-    extensions: [".vue", ".ts", ".less", "..."],
+    //可以加快webpack解析速度
+    extensions: [".vue", ".ts", ".scss", "..."],
     alias: {
       "@": resolve("./src"),
       "@/assets": resolve("./src/assets"),

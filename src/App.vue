@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import "@/assets/10kb.jpeg";
+import "@/style/a.css";
 
 const count = ref(1);
 </script>
