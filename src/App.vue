@@ -5,7 +5,7 @@ import "@/style/a.css";
 
 const count = ref(1);
 
-console.log('12345');
+console.log('12e3123');
 
 </script>
 

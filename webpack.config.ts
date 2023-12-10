@@ -1,12 +1,18 @@
-import * as webpack from "webpack";
 import path from "path";
+import { DefinePlugin } from "webpack";
 import { VueLoaderPlugin } from "vue-loader";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import type { Configuration as WebpackConfiguration } from "webpack";
+import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
+
+type Configuration = WebpackConfiguration & {
+  devServe?: DevServerConfiguration;
+};
 
 const resolve = (dir: string) => path.resolve(__dirname, dir);
 
-const config: webpack.Configuration = {
+const config: Configuration = {
   mode: "development",
   entry: "./src/index.ts",
   output: {
@@ -20,7 +26,6 @@ const config: webpack.Configuration = {
     // port: 999, // 服务端口号，默认8080
     // hot: true, // 默认已开启
     // host: "0.0.0.0", // 允许外部访问
-    compress: false, // gzip压缩,开发环境不开启,提升热更新速度
     historyApiFallback: true, // 解决history路由404问题
   },
   resolve: {
@@ -40,12 +45,13 @@ const config: webpack.Configuration = {
       template: "./public/index.html",
     }),
     new MiniCssExtractPlugin({
-      // 最初加载的输出css文件名
-      filename: "style/[name]_[contenthash:8].css",
+      // 最初加载的输出css文件名，开发环境不要用hash/fullhash/contenthash/chunkhash/modulehash
+      // filename: "style/[name]_[contenthash:8].css",
+      filename: "style/[name]_[id].css",
       // 按需加载的 chunk 文件名
       chunkFilename: "style/[id].css",
     }),
-    new webpack.DefinePlugin({
+    new DefinePlugin({
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       BASE_URL: "'./'",

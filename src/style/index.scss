@@ -1,11 +1,12 @@
 $baseColor1: rgb(128, 255, 0);
 $baseColor2: #fe3333;
+$baseColor3: rgba(234, 146, 4, 0.948);
 
 @mixin baseStyle {
-  background-color: aqua;
-  border: 1px solid rgb(238, 245, 255);
+  background-color: rgb(12, 221, 221);
+  border: 1px solid $baseColor3;
 }
 
 body {
-  background-color: #d8c7c7;
+  background-color: #972929;
 }
