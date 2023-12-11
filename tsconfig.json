@@ -26,4 +26,9 @@
       "module": "CommonJS"
     }
   },
+  "includes": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.ts"
+  ]
 }

@@ -53,6 +53,7 @@ const baseConfig = (env: WebpackConfigEnv): Configuration => {
     ],
     module: {
       rules: [
+        // 编译是会进行语法检查的，只能在入口文件全量引入polyfill
         {
           test: /\.ts$/,
           //排除 node_modules 目录
@@ -65,6 +66,7 @@ const baseConfig = (env: WebpackConfigEnv): Configuration => {
             },
           },
         },
+        // 只会负责编译，并不会进行语法检查，可以按需引入polyfill
         // {
         //   test: /\.ts$/,
         //   exclude: /node_modules/,

@@ -7,6 +7,8 @@ const count = ref(1);
 
 console.log('12e3123');
 
+const a = ref('wer')
+
 </script>
 
 <template>
