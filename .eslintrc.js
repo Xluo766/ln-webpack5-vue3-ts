@@ -1,25 +1,27 @@
 module.exports = {
   root: true,
   env: {
-    // 解决eslint找不到module的报错
     node: true,
-    browser: true,
+    browser: true
   },
   extends: [
-    'plugin:vue/vue3-essential',
-    'eslint:recommended',
-    '@vue/typescript/recommended',
-    '@vue/prettier',
-    '@vue/prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
+    "plugin:vue/base",
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
   ],
+  parser: "vue-eslint-parser",
   parserOptions: {
-    parsar: '@typescript-eslint/parsar',
-    ecmaVersion: 2020,
-    sourceType: 'module',
+    parser: "@typescript-eslint/parser",
+    ecmaVersion: "latest",
+    sourceType: "module"
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-  },
-}
+    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-types": "off"
+  }
+};

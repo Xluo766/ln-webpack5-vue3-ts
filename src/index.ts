@@ -20,8 +20,6 @@ if (new Date().getSeconds() > 30) {
 
 // console.log(WEBPACK_FUNC());
 
-
-
 import { createApp } from "vue";
 import App from "@/App.vue";
 

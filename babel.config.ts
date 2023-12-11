@@ -43,22 +43,22 @@ const config = {
         // 设置兼容目标浏览器
         targets: {
           chrome: "58",
-          ie: "11",
+          ie: "11"
         },
         // 自动引入core-js根据目标浏览器按需使用打补丁
         useBuiltIns: "usage",
         //  一般是指定 3，这个会 polyfill 实例方法，而 corejs2 不会
-        corejs: 3,
-      },
+        corejs: 3
+      }
     ],
     [
       "@babel/preset-typescript",
       {
         //表示每个文件都应该被解析为 TS、TSX
-        allExtensions: true,
-      },
-    ],
-  ],
+        allExtensions: true
+      }
+    ]
+  ]
   // plugins: [
   //   [
   //     "@babel/plugin-transform-runtime",

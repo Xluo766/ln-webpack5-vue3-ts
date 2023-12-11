@@ -2,10 +2,10 @@
 //   plugins: ["postcss-preset-env"],
 // };
 
-import {} from "postcss"
+import {} from "postcss";
 
 const config = {
-  plugins: ["postcss-preset-env"],
+  plugins: ["postcss-preset-env"]
 };
 
 export default config;

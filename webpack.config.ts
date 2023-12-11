@@ -27,8 +27,8 @@ const baseConfig = (env: WebpackConfigEnv): Configuration => {
       clean: true,
       environment: {
         //生产打包输出普通函数IIFE
-        arrowFunction: false,
-      },
+        arrowFunction: false
+      }
     },
     resolve: {
       //可以加快webpack解析速度
@@ -36,20 +36,20 @@ const baseConfig = (env: WebpackConfigEnv): Configuration => {
       alias: {
         "@": resolve("./src"),
         "@/assets": resolve("./src/assets"),
-        "@/style": resolve("./src/style"),
-      },
+        "@/style": resolve("./src/style")
+      }
     },
     plugins: [
       // 解析.vue文件必需插件
       new VueLoaderPlugin(),
       new HtmlWebpackPlugin({
         title: "webpack5+Vue3+ts",
-        template: "./public/index.html",
+        template: "./public/index.html"
       }),
       new DefinePlugin({
         __VUE_OPTIONS_API__: true,
-        __VUE_PROD_DEVTOOLS__: false,
-      }),
+        __VUE_PROD_DEVTOOLS__: false
+      })
     ],
     module: {
       rules: [
@@ -62,9 +62,9 @@ const baseConfig = (env: WebpackConfigEnv): Configuration => {
             loader: "ts-loader",
             options: {
               // 从vue文件分离出来的ts内容会加上ts后缀给ts-loader处理
-              appendTsSuffixTo: [/\.vue$/],
-            },
-          },
+              appendTsSuffixTo: [/\.vue$/]
+            }
+          }
         },
         // 只会负责编译，并不会进行语法检查，可以按需引入polyfill
         // {
@@ -74,7 +74,7 @@ const baseConfig = (env: WebpackConfigEnv): Configuration => {
         // },
         {
           test: /\.vue$/,
-          loader: "vue-loader",
+          loader: "vue-loader"
         },
         {
           test: /\.s?css$/,
@@ -83,8 +83,8 @@ const baseConfig = (env: WebpackConfigEnv): Configuration => {
             env.production ? MiniCssExtractPlugin.loader : "style-loader",
             "css-loader",
             "postcss-loader",
-            "sass-loader",
-          ],
+            "sass-loader"
+          ]
         },
         {
           test: /\.(png|svg|jpe?g|gif)$/,
@@ -92,16 +92,16 @@ const baseConfig = (env: WebpackConfigEnv): Configuration => {
           parser: {
             // 图片小于20kb，会被解析为一个 Base64 编码的字符串注入到包中，
             dataUrlCondition: {
-              maxSize: 20 * 1024,
-            },
+              maxSize: 20 * 1024
+            }
           },
           generator: {
             // 此选项被称为文件名，但还是可以使用像 'js/[name]/bundle.js' 这样的文件夹结构
-            filename: "image/[name]_[contenthash:10][ext]",
-          },
-        },
-      ],
-    },
+            filename: "image/[name]_[contenthash:10][ext]"
+          }
+        }
+      ]
+    }
   };
 };
 
@@ -112,7 +112,7 @@ const prodConfig: Configuration = {
       // 最初加载的输出css文件名，开发环境不要用hash/fullhash/contenthash/chunkhash/modulehash
       filename: "style/[name]_[contenthash:8].css",
       // 按需加载的 chunk 文件名
-      chunkFilename: "style/[name]_[chunkhash:8].css",
+      chunkFilename: "style/[name]_[chunkhash:8].css"
     }),
     new CopyPlugin({
       patterns: [
@@ -120,13 +120,13 @@ const prodConfig: Configuration = {
           // form：复制的文件或者目录
           from: "./public",
           // globOptions.ignore：不复制html，已经使用了插件HtmlWebpackPlugin，否则报重复错误
-          globOptions: { ignore: ["**/index.html"] },
+          globOptions: { ignore: ["**/index.html"] }
           // 默认就是配置的output输出目录，output.path没有配置，默认就是dist
           // to: "",
-        },
-      ],
-    }),
-  ],
+        }
+      ]
+    })
+  ]
 };
 
 const devConfig: Configuration = {
@@ -136,8 +136,8 @@ const devConfig: Configuration = {
     // port: 999, // 服务端口号，默认8080
     // hot: true, // 默认已开启
     // host: "0.0.0.0", // 允许外部访问
-    historyApiFallback: true, // 解决history路由404问题
-  },
+    historyApiFallback: true // 解决history路由404问题
+  }
 };
 
 export default (env: WebpackConfigEnv) => {

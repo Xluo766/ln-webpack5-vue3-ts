@@ -10,15 +10,9 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@/assets/*": [
-        "src/assets/*"
-      ],
-      "@/style/*": [
-        "src/style/*"
-      ]
+      "@/*": ["src/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/style/*": ["src/style/*"]
     }
   },
   "ts-node": {
@@ -26,9 +20,5 @@
       "module": "CommonJS"
     }
   },
-  "includes": [
-    "env.d.ts",
-    "src/**/*",
-    "src/**/*.ts"
-  ]
+  "includes": ["env.d.ts", "src/**/*", "src/**/*.ts"]
 }
