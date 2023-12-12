@@ -1,0 +1,10 @@
+node_modules
+dist
+*.d.ts
+*.css
+*.scss
+*.ipg
+*.png
+*.jpeg
+*.svg
+*.gif

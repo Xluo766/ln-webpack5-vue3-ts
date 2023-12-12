@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import "@/assets/10kb.jpeg";
 import "@/style/a.css";
 
 const count = ref(1);
 
-console.log("12e3123");
+const obj = reactive({
+  namer: "ln"
+});
+console.log(obj);
 
-const a = ref("wer");
+console.log("12e3123");
 </script>
 
 <template>

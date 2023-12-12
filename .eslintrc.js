@@ -1,27 +1,34 @@
 module.exports = {
-  root: true,
   env: {
-    node: true,
-    browser: true
+    browser: true,
+    es2021: true,
+    node: true
   },
   extends: [
-    "plugin:vue/base",
-    "plugin:vue/vue3-essential",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:vue/vue3-essential"
   ],
-  parser: "vue-eslint-parser",
+  overrides: [
+    {
+      env: {
+        node: true
+      },
+      files: [".eslintrc.{js,cjs}"],
+      parserOptions: {
+        sourceType: "script"
+      }
+    }
+  ],
   parserOptions: {
-    parser: "@typescript-eslint/parser",
     ecmaVersion: "latest",
+    parser: "@typescript-eslint/parser",
     sourceType: "module"
   },
-  rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/ban-types": "off"
+  plugins: ["@typescript-eslint", "vue"],
+  rules: {},
+  // 声明全局变量，同时在d.ts文件声明
+  globals: {
+    __VUE_OPTIONS_API__: "readonly"
   }
 };

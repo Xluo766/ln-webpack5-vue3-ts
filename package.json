@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .vue,.js,.ts --fix",
-    "format": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
+    "prettier": "prettier --write .",
     "build": "webpack --env production",
-    "dev": "webpack serve --env development --open"
+    "dev": "webpack serve --env development --open",
+    "prepare": "husky install",
+    "lint:lint-staged": "lint-staged"
   },
   "keywords": [],
   "author": "",
@@ -26,10 +28,10 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
     "eslint": "^8.55.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-vue": "^9.19.2",
     "html-webpack-plugin": "^5.5.4",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.0",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
@@ -53,5 +55,21 @@
     "@babel/runtime-corejs3": "^7.23.5",
     "core-js": "3",
     "vue": "^3.3.10"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{cjs,json}": [
+      "prettier --write"
+    ],
+    "*.{vue,html}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
+    ]
   }
 }
