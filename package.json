@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .vue,.js,.ts --fix",
     "prettier": "prettier --write .",
-    "build": "webpack --env production",
+    "build": "tsc --noEmit && webpack --env production",
     "dev": "webpack serve --env development --open",
     "prepare": "husky install",
     "lint:lint-staged": "lint-staged",
@@ -23,6 +23,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^20.10.3",
     "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
@@ -59,6 +60,7 @@
     "@babel/runtime": "^7.23.5",
     "@babel/runtime-corejs3": "^7.23.5",
     "core-js": "3",
+    "lodash-es": "^4.17.21",
     "vue": "^3.3.10"
   },
   "lint-staged": {
