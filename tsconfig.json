@@ -19,6 +19,10 @@
     "compilerOptions": {
       "module": "CommonJS"
     }
-  },
-  "includes": ["env.d.ts", "src/**/*", "src/**/*.ts"]
+  }
+  // "includes": [
+  //   "env.d.ts",
+  //   "src/**/*",
+  //   "src/**/*.ts"
+  // ]
 }

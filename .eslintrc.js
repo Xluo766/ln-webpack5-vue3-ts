@@ -26,7 +26,9 @@ module.exports = {
     sourceType: "module"
   },
   plugins: ["@typescript-eslint", "vue"],
-  rules: {},
+  rules: {
+    "no-debugger": "off"
+  },
   // 声明全局变量，同时在d.ts文件声明
   globals: {
     __VUE_OPTIONS_API__: "readonly"
