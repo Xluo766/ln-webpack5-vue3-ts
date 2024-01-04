@@ -3,6 +3,7 @@
 // 没有这个文件 import .vue 类型的文件会报错。
 declare module "*.vue" {
   import type { DefineComponent } from "vue";
-  const component: DefineComponent<{}, {}, any>;
+  const component: DefineComponent;
   export default component;
 }
+

@@ -10,25 +10,6 @@ const resolve = (dir: string) => path.resolve(__dirname, dir);
 export default function baseConfig(env: WebpackConfigEnv): Configuration {
   return {
     entry: "./src/index.ts",
-    // {
-    //   index: {
-    //     import: "./src/index.ts",
-    //     dependOn: "shared"
-    //   },
-    //   home: {
-    //     import: "./src/home.ts",
-    //     dependOn: "shared"
-    //   },
-    //   shared: ["lodash-es"]
-    // },
-    output: {
-      filename: "[name].[contenthash:8].js",
-      clean: true,
-      environment: {
-        //生产打包输出普通函数IIFE
-        arrowFunction: false
-      }
-    },
     resolve: {
       //可以加快webpack解析速度
       extensions: [".vue", ".ts", ".scss", "..."],

@@ -6,6 +6,15 @@ import baseConfig from "./webpack.config.base";
 
 const prodConfig: Configuration = {
   mode: "production",
+  output: {
+    filename: "[name].[contenthash:8].js",
+    chunkFilename: "[name].[chunkhash:8].chunk.js",
+    clean: true,
+    environment: {
+      //生产打包输出普通函数IIFE
+      arrowFunction: false
+    }
+  },
   module: {
     rules: [
       // 在package.json中配置脚本，在打包前用tsc校验，打包用babel可以按需引入polyfill
@@ -35,10 +44,13 @@ const prodConfig: Configuration = {
         }
       ]
     })
-  ]
-  // optimization: {
-  //   runtimeChunk: "single"
-  // }
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    },
+    runtimeChunk: "single"
+  }
 };
 
 export default (env: WebpackConfigEnv) => {

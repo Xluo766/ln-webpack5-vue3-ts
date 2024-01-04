@@ -20,21 +20,21 @@
 
 // // console.log(WEBPACK_FUNC());
 
-// import { createApp } from "vue";
-// import App from "@/App.vue";
 // import "@/style/index.scss";
 // import "@/style/a.css";
-// const app = createApp(App);
-// app.mount("#app");
+
+import { createApp } from "vue";
+import App from "@/App.vue";
+const app = createApp(App);
+app.mount("#app");
 
 // import imgUrl from "@/assets/10kb.jpeg";
 // const imgEL = new Image();
 // imgEL.src = imgUrl;
 // document.body.appendChild(imgEL);
 
-// import { join } from "lodash-es";
-
-// console.log(join(["Another", "module", "loaded!"], " "));
+import { join } from "lodash-es";
+console.log(join(["Another", "module", "loaded!"], " "));
 
 // let name = "sss";
 // export const sendName = (s: string) => {
@@ -48,7 +48,15 @@
 
 // sendName("1");
 
-debugger;
-import("./home").then((res) => {
-  res.sendName();
-});
+const btnEl = document.createElement("button");
+btnEl.textContent = "import导入";
+btnEl.onclick = function () {
+  import(
+    /* webpackPrefetch: true */
+    /* webpackChunkName: "home" */
+    "./home"
+  ).then((res) => {
+    res.sendName();
+  });
+};
+document.body.appendChild(btnEl);
