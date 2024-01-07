@@ -3,6 +3,12 @@ import { merge } from "webpack-merge";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 import baseConfig from "./webpack.config.base";
+import { PurgeCSSPlugin } from "purgecss-webpack-plugin";
+import { globSync } from "glob";
+import path from "path";
+// import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
+
+// const smp = new SpeedMeasurePlugin();
 
 const prodConfig: Configuration = {
   mode: "production",
@@ -43,16 +49,38 @@ const prodConfig: Configuration = {
           // to: "",
         }
       ]
+    }),
+    new PurgeCSSPlugin({
+      paths: globSync(`${path.resolve(__dirname, "src")}/**/*`, {
+        nodir: true
+      })
     })
   ],
   optimization: {
+    usedExports: true,
     splitChunks: {
-      chunks: "all"
-    },
-    runtimeChunk: "single"
+      cacheGroups: {
+        vendor: {
+          name: "vendor",
+          chunks: "all",
+          priority: 20,
+          test: /[\\/]node_modules[\\/]/
+        },
+        common: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -5,
+          reuseExistingChunk: true,
+          chunks: "initial",
+          name: "common_node_modules",
+          minSize: 0
+        }
+      }
+    }
   }
 };
 
 export default (env: WebpackConfigEnv) => {
+  // return smp.wrap(merge<Configuration>(baseConfig(env), prodConfig));
+
   return merge<Configuration>(baseConfig(env), prodConfig);
 };
