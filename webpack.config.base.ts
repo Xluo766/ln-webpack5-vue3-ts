@@ -18,6 +18,8 @@ export default function baseConfig(env: WebpackConfigEnv): Configuration {
         "@/assets": resolve("./src/assets"),
         "@/style": resolve("./src/style")
       }
+      // 优先查找src，再查找node_modules
+      // modules: [resolve("src"), "node_modules"]
     },
     plugins: [
       // 解析.vue文件必需插件
@@ -35,6 +37,7 @@ export default function baseConfig(env: WebpackConfigEnv): Configuration {
       rules: [
         {
           test: /\.vue$/,
+          include: resolve("src"),
           loader: "vue-loader"
         },
         {

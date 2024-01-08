@@ -6,7 +6,8 @@ import baseConfig from "./webpack.config.base";
 import { PurgeCSSPlugin } from "purgecss-webpack-plugin";
 import { globSync } from "glob";
 import path from "path";
-// import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+// import SpeedMeasurePlugin from "speed-measure-webpack-plugin"; // 不兼容新版插件
 
 // const smp = new SpeedMeasurePlugin();
 
@@ -54,7 +55,8 @@ const prodConfig: Configuration = {
       paths: globSync(`${path.resolve(__dirname, "src")}/**/*`, {
         nodir: true
       })
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     usedExports: true,
