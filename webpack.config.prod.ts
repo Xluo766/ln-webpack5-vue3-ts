@@ -7,9 +7,11 @@ import { PurgeCSSPlugin } from "purgecss-webpack-plugin";
 import { globSync } from "glob";
 import path from "path";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-// import SpeedMeasurePlugin from "speed-measure-webpack-plugin"; // 不兼容新版插件
 
+// import SpeedMeasurePlugin from "speed-measure-webpack-plugin"; // 不兼容新版插件
 // const smp = new SpeedMeasurePlugin();
+
+const resolve = (dir: string) => path.resolve(__dirname, dir);
 
 const prodConfig: Configuration = {
   mode: "production",
@@ -27,8 +29,9 @@ const prodConfig: Configuration = {
       // 在package.json中配置脚本，在打包前用tsc校验，打包用babel可以按需引入polyfill
       {
         test: /\.ts$/,
-        exclude: /node_modules/,
-        use: "babel-loader"
+        include: resolve("./src"),
+        use: ["thread-loader", "babel-loader"]
+        // use: ["babel-loader"]
       }
     ]
   },
@@ -83,6 +86,5 @@ const prodConfig: Configuration = {
 
 export default (env: WebpackConfigEnv) => {
   // return smp.wrap(merge<Configuration>(baseConfig(env), prodConfig));
-
   return merge<Configuration>(baseConfig(env), prodConfig);
 };

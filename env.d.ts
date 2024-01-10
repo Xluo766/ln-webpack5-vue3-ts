@@ -26,3 +26,7 @@ declare module "*.svg" {
 declare module "*.css" {}
 declare module "*.scss" {}
 declare module "*.sass" {}
+
+declare module "thread-loader/dist/index.js" {
+  export function warmup(options: unknown, requires: unknown): void;
+}

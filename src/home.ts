@@ -4,7 +4,6 @@ export const sendName = (s: string) => {
     name = "test" + s;
   }
   console.log(name);
-
   return name;
 };
 

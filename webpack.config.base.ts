@@ -37,11 +37,12 @@ export default function baseConfig(env: WebpackConfigEnv): Configuration {
       rules: [
         {
           test: /\.vue$/,
-          include: resolve("src"),
+          include: resolve("./src"),
           loader: "vue-loader"
         },
         {
           test: /\.s?css$/,
+          include: resolve("./src"),
           use: [
             // 生产环境单独打包，开发环境用style-loader
             env.production ? MiniCssExtractPlugin.loader : "style-loader",
@@ -52,6 +53,7 @@ export default function baseConfig(env: WebpackConfigEnv): Configuration {
         },
         {
           test: /\.(png|svg|jpe?g|gif)$/,
+          include: resolve("./src"),
           type: "asset",
           parser: {
             // 图片小于20kb，会被解析为一个 Base64 编码的字符串注入到包中，
