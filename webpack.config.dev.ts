@@ -4,7 +4,7 @@ import { merge } from "webpack-merge";
 
 const devConfig: Configuration = {
   mode: "development",
-  devtool: "eval-cheap-module-source-map",
+  devtool: "eval-source-map",
   devServer: {
     // port: 999, // 服务端口号，默认8080
     // hot: true, // 默认已开启

@@ -17,7 +17,7 @@ console.log("12e3123");
 
 <template>
   <h1 @click="count++">webpack5 + vue3 +ts</h1>
-  <h3>数字：{{ count }}</h3>
+  <h3>数字123：{{ count }}</h3>
 </template>
 <style lang="scss" scoped>
 @import "./style/index.scss";
