@@ -73,7 +73,7 @@ const prodConfig: Configuration = {
         },
         common: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -5,
+          priority: 10,
           reuseExistingChunk: true,
           chunks: "initial",
           name: "common_node_modules",

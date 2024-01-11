@@ -17,7 +17,8 @@ export default function baseConfig(env: WebpackConfigEnv): Configuration {
         "@": resolve("./src"),
         "@/assets": resolve("./src/assets"),
         "@/style": resolve("./src/style")
-      }
+      },
+      mainFields: ["main", "module", "browser"]
       // 优先查找src，再查找node_modules
       // modules: [resolve("src"), "node_modules"]
     },
@@ -67,6 +68,12 @@ export default function baseConfig(env: WebpackConfigEnv): Configuration {
           }
         }
       ]
+    },
+    cache: {
+      type: "filesystem",
+      buildDependencies: {
+        config: [__filename]
+      }
     }
   };
 }
