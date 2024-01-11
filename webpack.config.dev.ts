@@ -27,6 +27,9 @@ const devConfig: Configuration = {
         }
       }
     ]
+  },
+  optimization: {
+    runtimeChunk: true
   }
 };
 

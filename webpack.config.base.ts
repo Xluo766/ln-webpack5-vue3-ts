@@ -1,6 +1,6 @@
 import path from "path";
 import { VueLoaderPlugin } from "vue-loader";
-import { DefinePlugin } from "webpack";
+import { DefinePlugin, IgnorePlugin } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { Configuration, WebpackConfigEnv } from "webpack.type";
@@ -18,9 +18,8 @@ export default function baseConfig(env: WebpackConfigEnv): Configuration {
         "@/assets": resolve("./src/assets"),
         "@/style": resolve("./src/style")
       },
-      mainFields: ["main", "module", "browser"]
-      // 优先查找src，再查找node_modules
-      // modules: [resolve("src"), "node_modules"]
+      mainFields: ["module", "main", "browser"]
+      // modules: [resolve("node_modules"), "node_modules"]
     },
     plugins: [
       // 解析.vue文件必需插件
@@ -32,6 +31,11 @@ export default function baseConfig(env: WebpackConfigEnv): Configuration {
       new DefinePlugin({
         __VUE_OPTIONS_API__: true,
         __VUE_PROD_DEVTOOLS__: false
+      }),
+      //排除多余模块
+      new IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/
       })
     ],
     module: {

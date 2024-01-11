@@ -20,9 +20,7 @@ if (new Date().getSeconds() > 30) {
 
 // // console.log(WEBPACK_FUNC());
 
-// import "@/style/index.scss";
 import "@/style/index.scss";
-
 import { createApp } from "vue";
 import App from "@/App.vue";
 const app = createApp(App);
@@ -35,8 +33,8 @@ app.mount("#app");
 // imgEL.src = imgUrl;
 // document.body.appendChild(imgEL);
 
-import { join } from "lodash-es";
-console.log(join(["Another", "module", "loaded!"], " "));
+// import { join } from "lodash-es";
+// console.log(join(["Another", "module", "loaded!"], " "));
 
 // let name = "sss";
 // export const sendName = (s: string) => {
@@ -67,13 +65,13 @@ import { cube } from "./home";
 
 function component() {
   const element = document.createElement("pre");
-
   // lodash 现在使用 import 引入
   element.innerHTML = ["你好 webpack！", "5 的立方等于 " + cube(5)].join(
     "\n\n"
   );
-
   return element;
 }
-
 document.body.appendChild(component());
+
+import moment from "moment";
+console.log(moment().format("MMMM Do YYYY, h:mm:ss a"));

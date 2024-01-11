@@ -30,8 +30,17 @@ const prodConfig: Configuration = {
       {
         test: /\.ts$/,
         include: resolve("./src"),
-        use: ["thread-loader", "babel-loader"]
-        // use: ["babel-loader"]
+        use: [
+          {
+            loader: "thread-loader",
+            options: {
+              // workers: 2,
+              // workerParallelJobs: 50,
+              // poolTimeout: 2000
+            }
+          },
+          "babel-loader"
+        ]
       }
     ]
   },
@@ -64,20 +73,22 @@ const prodConfig: Configuration = {
   optimization: {
     usedExports: true,
     splitChunks: {
+      chunks: "all",
       cacheGroups: {
+        // 包括整个应用程序中 node_modules 的所有代码。
         vendor: {
           name: "vendor",
           chunks: "all",
           priority: 20,
           test: /[\\/]node_modules[\\/]/
         },
-        common: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: 10,
-          reuseExistingChunk: true,
+        // 包括入口（entry points）之间所有共享的代码
+        commons: {
+          name: "commons",
           chunks: "initial",
-          name: "common_node_modules",
-          minSize: 0
+          priority: 10,
+          minSize: 0,
+          minChunks: 2
         }
       }
     }
